@@ -1,0 +1,56 @@
+src/app/admin/orders/page.tsx(84,20): error TS2322: Type '({ header: string; accessorKey: string; cell: (row: any) => Element; className?: undefined; } | { header: string; accessorKey: string; cell?: undefined; className?: undefined; } | { header: string; accessorKey: string; className: string; cell: (row: any) => Element; })[]' is not assignable to type 'Column<{ id: string; customer: string; email: string; phone: string; address: string; amount: string; date: string; status: string; tracking: string; }>[]'.
+  Type '{ header: string; accessorKey: string; cell: (row: any) => Element; className?: undefined; } | { header: string; accessorKey: string; cell?: undefined; className?: undefined; } | { header: string; accessorKey: string; className: string; cell: (row: any) => Element; }' is not assignable to type 'Column<{ id: string; customer: string; email: string; phone: string; address: string; amount: string; date: string; status: string; tracking: string; }>'.
+    Type '{ header: string; accessorKey: string; cell: (row: any) => JSX.Element; className?: undefined; }' is not assignable to type 'Column<{ id: string; customer: string; email: string; phone: string; address: string; amount: string; date: string; status: string; tracking: string; }>'.
+      Types of property 'accessorKey' are incompatible.
+        Type 'string' is not assignable to type '"customer" | "id" | "date" | "email" | "status" | "actions" | "amount" | "tracking" | "phone" | "address"'.
+src/components/ui/product-card-2.tsx(91,8): error TS2322: Type '{ children: Element[]; defaultChecked?: boolean | undefined; defaultValue?: string | number | readonly string[] | undefined; suppressContentEditableWarning?: boolean | undefined; suppressHydrationWarning?: boolean | undefined; ... 276 more ...; className: string; }' is not assignable to type 'Omit<HTMLMotionProps<"div">, "ref">'.
+  Types of property 'onAnimationStart' are incompatible.
+    Type 'AnimationEventHandler<HTMLDivElement> | undefined' is not assignable to type '((definition: AnimationDefinition) => void) | undefined'.
+      Type 'AnimationEventHandler<HTMLDivElement>' is not assignable to type '(definition: AnimationDefinition) => void'.
+        Types of parameters 'event' and 'definition' are incompatible.
+          Type 'AnimationDefinition' is not assignable to type 'AnimationEvent<HTMLDivElement>'.
+            Type 'string' is not assignable to type 'AnimationEvent<HTMLDivElement>'.
+src/components/ui/product-card-2.tsx(145,11): error TS2322: Type '{ rest: { y: string; opacity: number; filter: string; }; hover: { y: string; opacity: number; filter: string; transition: { type: string; stiffness: number; damping: number; mass: number; staggerChildren: number; delayChildren: number; }; }; }' is not assignable to type 'Variants'.
+  Property 'hover' is incompatible with index signature.
+    Type '{ y: string; opacity: number; filter: string; transition: { type: string; stiffness: number; damping: number; mass: number; staggerChildren: number; delayChildren: number; }; }' is not assignable to type 'Variant'.
+      Type '{ y: string; opacity: number; filter: string; transition: { type: string; stiffness: number; damping: number; mass: number; staggerChildren: number; delayChildren: number; }; }' is not assignable to type 'TargetAndTransition'.
+        Type '{ y: string; opacity: number; filter: string; transition: { type: string; stiffness: number; damping: number; mass: number; staggerChildren: number; delayChildren: number; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+          Types of property 'transition' are incompatible.
+            Type '{ type: string; stiffness: number; damping: number; mass: number; staggerChildren: number; delayChildren: number; }' is not assignable to type 'Transition<any> | undefined'.
+              Type '{ type: string; stiffness: number; damping: number; mass: number; staggerChildren: number; delayChildren: number; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                Type '{ type: string; stiffness: number; damping: number; mass: number; staggerChildren: number; delayChildren: number; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                  Types of property 'type' are incompatible.
+                    Type 'string' is not assignable to type 'AnimationGeneratorType | undefined'.
+src/components/ui/product-card-2.tsx(150,25): error TS2322: Type '{ rest: { opacity: number; y: number; scale: number; }; hover: { opacity: number; y: number; scale: number; transition: { type: string; stiffness: number; damping: number; mass: number; }; }; }' is not assignable to type 'Variants'.
+  Property 'hover' is incompatible with index signature.
+    Type '{ opacity: number; y: number; scale: number; transition: { type: string; stiffness: number; damping: number; mass: number; }; }' is not assignable to type 'Variant'.
+      Type '{ opacity: number; y: number; scale: number; transition: { type: string; stiffness: number; damping: number; mass: number; }; }' is not assignable to type 'TargetAndTransition'.
+        Type '{ opacity: number; y: number; scale: number; transition: { type: string; stiffness: number; damping: number; mass: number; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+          Types of property 'transition' are incompatible.
+            Type '{ type: string; stiffness: number; damping: number; mass: number; }' is not assignable to type 'Transition<any> | undefined'.
+              Type '{ type: string; stiffness: number; damping: number; mass: number; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                Type '{ type: string; stiffness: number; damping: number; mass: number; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                  Types of property 'type' are incompatible.
+                    Type 'string' is not assignable to type 'AnimationGeneratorType | undefined'.
+src/components/ui/product-card-2.tsx(158,25): error TS2322: Type '{ rest: { opacity: number; y: number; scale: number; }; hover: { opacity: number; y: number; scale: number; transition: { type: string; stiffness: number; damping: number; mass: number; }; }; }' is not assignable to type 'Variants'.
+  Property 'hover' is incompatible with index signature.
+    Type '{ opacity: number; y: number; scale: number; transition: { type: string; stiffness: number; damping: number; mass: number; }; }' is not assignable to type 'Variant'.
+      Type '{ opacity: number; y: number; scale: number; transition: { type: string; stiffness: number; damping: number; mass: number; }; }' is not assignable to type 'TargetAndTransition'.
+        Type '{ opacity: number; y: number; scale: number; transition: { type: string; stiffness: number; damping: number; mass: number; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+          Types of property 'transition' are incompatible.
+            Type '{ type: string; stiffness: number; damping: number; mass: number; }' is not assignable to type 'Transition<any> | undefined'.
+              Type '{ type: string; stiffness: number; damping: number; mass: number; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                Type '{ type: string; stiffness: number; damping: number; mass: number; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                  Types of property 'type' are incompatible.
+                    Type 'string' is not assignable to type 'AnimationGeneratorType | undefined'.
+src/components/ui/product-card-2.tsx(164,25): error TS2322: Type '{ rest: { opacity: number; y: number; scale: number; }; hover: { opacity: number; y: number; scale: number; transition: { type: string; stiffness: number; damping: number; mass: number; }; }; }' is not assignable to type 'Variants'.
+  Property 'hover' is incompatible with index signature.
+    Type '{ opacity: number; y: number; scale: number; transition: { type: string; stiffness: number; damping: number; mass: number; }; }' is not assignable to type 'Variant'.
+      Type '{ opacity: number; y: number; scale: number; transition: { type: string; stiffness: number; damping: number; mass: number; }; }' is not assignable to type 'TargetAndTransition'.
+        Type '{ opacity: number; y: number; scale: number; transition: { type: string; stiffness: number; damping: number; mass: number; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+          Types of property 'transition' are incompatible.
+            Type '{ type: string; stiffness: number; damping: number; mass: number; }' is not assignable to type 'Transition<any> | undefined'.
+              Type '{ type: string; stiffness: number; damping: number; mass: number; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                Type '{ type: string; stiffness: number; damping: number; mass: number; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                  Types of property 'type' are incompatible.
+                    Type 'string' is not assignable to type 'AnimationGeneratorType | undefined'.

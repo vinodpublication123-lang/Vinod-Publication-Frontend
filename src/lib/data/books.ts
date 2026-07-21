@@ -1,0 +1,43 @@
+export const books = [
+  {
+    id: "the-midnight-archive",
+    title: "The Midnight Archive",
+    author: "E. R. Sterling",
+    authorImage: "/images/author_one.png",
+    cover: "/images/book_cover_one.png",
+    description: "A breathtaking exploration of lost histories and forgotten worlds.",
+    fullDescription: "In the heart of an ancient city lies an archive that only appears at midnight. E.R. Sterling weaves a masterful narrative that blends historical fiction with magical realism, exploring the lengths to which people will go to preserve their most cherished memories. This premium edition features exclusive interior artwork and an afterword by the author.",
+    genre: "Literary Fiction",
+    publicationDate: "October 12, 2026",
+    buyLink: "/the-midnight-archive", // Appended to STORE_URL in components
+    hasSong: false,
+  },
+  {
+    id: "echoes-of-eternity",
+    title: "Echoes of Eternity",
+    author: "Aria Vance",
+    authorImage: "/images/author_two.png",
+    cover: "/images/book_cover_two.png",
+    description: "A poignant collection of modern poetry exploring love and loss.",
+    fullDescription: "Aria Vance returns with her most intimate collection yet. 'Echoes of Eternity' strips away the noise of the modern world to reveal the raw, beating heart of human connection. Each poem is a testament to the enduring power of vulnerability. The book includes an interactive musical experience linked to specific verses.",
+    genre: "Poetry",
+    publicationDate: "November 05, 2026",
+    buyLink: "/echoes-of-eternity",
+    hasSong: true,
+    songTitle: "Echoes (Original Composition)",
+    songUrl: "https://open.spotify.com/track/placeholder",
+  },
+  {
+    id: "silence-of-the-stars",
+    title: "Silence of the Stars",
+    author: "Julian Thorne",
+    authorImage: null,
+    cover: "/images/book_cover_three.png",
+    description: "An epic journey across galaxies and the human soul.",
+    fullDescription: "Julian Thorne's magnum opus is a sprawling science fiction epic that asks fundamental questions about our place in the universe. When a distant star system suddenly goes completely silent, a crew of reluctant explorers must uncover the truth. 'Silence of the Stars' is a masterful blend of hard science fiction and profound philosophical inquiry.",
+    genre: "Science Fiction",
+    publicationDate: "January 18, 2027",
+    buyLink: "/silence-of-the-stars",
+    hasSong: false,
+  }
+];

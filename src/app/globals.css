@@ -1,0 +1,189 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+}
+
+/* VINVERSE Dark Navy Theme — premium publishing house */
+:root {
+  /* Sparkles / gradient tokens (consumed by ui/sparkles & Services section) */
+  --sparkles-color: #d4af37;
+  --gradient-color: #d4af37;
+
+  --background: #080e1a;
+  --foreground: #e7e5e4;
+  --card: #0d1526;
+  --card-foreground: #e7e5e4;
+  --popover: #0d1526;
+  --popover-foreground: #e7e5e4;
+  --primary: #E1E0CC;
+  --primary-foreground: #080e1a;
+  --secondary: #111d35;
+  --secondary-foreground: #e7e5e4;
+  --muted: #0d1526;
+  --muted-foreground: #8a95aa;
+  --accent: #d4af37;
+  --accent-foreground: #080e1a;
+  --destructive: #722f37;
+  --destructive-foreground: #fefefe;
+  --border: rgba(225, 232, 255, 0.08);
+  --input: rgba(225, 232, 255, 0.10);
+  --ring: #d4af37;
+  --radius: 0.75rem;
+
+  /* Custom VINVERSE tokens */
+  --gold: #d4af37;
+  --gold-light: #e6c86a;
+  --gold-dark: #aa8a29;
+  --wine: #722f37;
+  --wine-light: #8b3a44;
+  --ivory: #E1E0CC;
+  --ink: #080e1a;
+  --ink-light: #0d1526;
+  --navy: #080e1a;
+  --navy-mid: #0d1526;
+  --navy-surface: #111d35;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Editorial typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+/* Noise overlay for hero */
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* ─── Seamless section-to-section fade overlay ─────────────────────────────
+   Use .section-fade-out on any section to gracefully dissolve into the
+   next section's background. The ::after pseudo-element creates a
+   gradient that goes from transparent → navy at the very bottom.            */
+.section-fade-out {
+  position: relative;
+}
+
+.section-fade-out::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(to bottom, transparent, var(--background));
+  z-index: 5;
+}
+
+/* Selection */
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+/* ─── Hidden scrollbar (page stays scrollable, bar is invisible) ─────────── */
+html {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE / Edge legacy */
+}
+
+::-webkit-scrollbar {
+  display: none;
+  /* Chrome / Safari / Opera */
+}
+
+/* ─── Global Cursor Pointer Fix for Interactive Elements ─────────────────── */
+button,
+a,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select,
+label {
+  cursor: pointer !important;
+}
+
+button:disabled,
+input:disabled,
+a[aria-disabled="true"] {
+  cursor: not-allowed !important;
+}
+
+/* ─── Custom Form Element Styling ───────────────────────────────────────── */
+/* Make date picker calendar icon gold */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(74%) sepia(43%) saturate(583%) hue-rotate(6deg) brightness(96%) contrast(89%);
+  cursor: pointer;
+}
+
+/* ─── Preloader Smooth Animation ───────────────────────────────────────── */
+@keyframes loading-bar-smooth {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(-20%); }
+  100% { transform: translateX(100%); }
+}

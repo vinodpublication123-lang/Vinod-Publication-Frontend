@@ -1,0 +1,217 @@
+
+> vinverse@0.1.0 lint
+> eslint
+
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\account\orders\page.tsx
+  35:73  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\account\page.tsx
+  24:25  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\admin\authors\[id]\edit\page.tsx
+  5:27  warning  'Upload' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\admin\authors\page.tsx
+  86:21  error  'statusType' is never reassigned. Use 'const' instead  prefer-const
+  86:33  error  Unexpected any. Specify a different type               @typescript-eslint/no-explicit-any
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\admin\books\[id]\edit\page.tsx
+    5:27  warning  'Upload' is defined but never used                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+    5:35  warning  'Music' is defined but never used                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+    5:51  warning  'ImageIcon' is defined but never used                                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+  151:23  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\admin\books\[id]\page.tsx
+  4:27  warning  'AlertCircle' is defined but never used  @typescript-eslint/no-unused-vars
+  4:66  warning  'Clock' is defined but never used        @typescript-eslint/no-unused-vars
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\admin\books\new\page.tsx
+  5:35  warning  'Music' is defined but never used      @typescript-eslint/no-unused-vars
+  5:51  warning  'ImageIcon' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\admin\books\page.tsx
+   5:32  warning  'MoreHorizontal' is defined but never used         @typescript-eslint/no-unused-vars
+  90:33  error    Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+  94:21  error    'qrType' is never reassigned. Use 'const' instead  prefer-const
+  94:29  error    Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\admin\inquiries\[id]\page.tsx
+  4:50  warning  'CheckCircle' is defined but never used  @typescript-eslint/no-unused-vars
+  4:63  warning  'Clock' is defined but never used        @typescript-eslint/no-unused-vars
+  4:70  warning  'Archive' is defined but never used      @typescript-eslint/no-unused-vars
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\admin\inquiries\page.tsx
+  5:31  warning  'MoreHorizontal' is defined but never used  @typescript-eslint/no-unused-vars
+  5:47  warning  'MessageSquare' is defined but never used   @typescript-eslint/no-unused-vars
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\admin\orders\[id]\page.tsx
+  124:177  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\admin\page.tsx
+  27:66  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  27:73  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  78:84  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\admin\products\page.tsx
+   5:32  warning  'MoreHorizontal' is defined but never used  @typescript-eslint/no-unused-vars
+  92:33  error    Unexpected any. Specify a different type    @typescript-eslint/no-explicit-any
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\cart\page.tsx
+  14:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\cart\page.tsx:14:5
+  12 |
+  13 |   useEffect(() => {
+> 14 |     setMounted(true);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  15 |   }, []);
+  16 |
+  17 |   if (!mounted) {  react-hooks/set-state-in-effect
+  54:84  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               react/no-unescaped-entities
+  80:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       @next/next/no-img-element
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\checkout\page.tsx
+   10:126  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-explicit-any
+   51:5    error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\checkout\page.tsx:51:5
+  49 |
+  50 |   useEffect(() => {
+> 51 |     setMounted(true);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  52 |   }, []);
+  53 |
+  54 |   if (!mounted) {  react-hooks/set-state-in-effect
+  275:25   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @next/next/no-img-element
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\forgot-password\page.tsx
+  12:73  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\login\page.tsx
+  58:18  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\order-success\page.tsx
+  15:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\app\order-success\page.tsx:15:5
+  13 |
+  14 |   useEffect(() => {
+> 15 |     setOrderNumber(`VIN-${Math.floor(100000 + Math.random() * 900000)}`);
+     |     ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  16 |     setMounted(true);
+  17 |   }, []);
+  18 |  react-hooks/set-state-in-effect
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\components\admin\DataTable.tsx
+  33:94  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\components\layout\Footer.tsx
+  2:10  warning  'ArrowRight' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\components\layout\Navbar.tsx
+   5:19  warning  'ArrowRight' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+  19:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\components\layout\Navbar.tsx:19:5
+  17 |
+  18 |   useEffect(() => {
+> 19 |     setMounted(true);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  20 |   }, []);
+  21 |
+  22 |   useEffect(() => {  react-hooks/set-state-in-effect
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\components\sections\Books.tsx
+  307:3  warning  'isAlt' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\components\ui\BookModal.tsx
+  3:10  warning  'useState' is defined but never used         @typescript-eslint/no-unused-vars
+  5:18  warning  'AnimatePresence' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\components\ui\display-cards.tsx
+  22:3  warning  'iconClassName' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\components\ui\liquid-glass-button.tsx
+  316:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\components\ui\liquid-glass-button.tsx:316:5
+  314 |  
+  315 |   React.useEffect(() => {
+> 316 |     setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
+      |     ^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  317 |   }, []);
+  318 |  
+  319 |   const buttonText = children || "Button";  react-hooks/set-state-in-effect
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\components\ui\product-card-2.tsx
+  103:11  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\components\ui\product-detail-page.tsx
+    2:30  warning  'Tag' is defined but never used                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+    2:35  warning  'Ruler' is defined but never used                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+    2:42  warning  'Users' is defined but never used                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+    2:49  warning  'Info' is defined but never used                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+    2:55  warning  'Heart' is defined but never used                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+    2:62  warning  'Share2' is defined but never used                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+    2:84  warning  'Send' is defined but never used                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+    2:90  warning  'Camera' is defined but never used                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+    9:10  warning  'Badge' is defined but never used                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+  143:17  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\components\ui\timeline-animation.tsx
+  49:6  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\components\ui\timeline-animation.tsx:49:6
+  47 |
+  48 |   return (
+> 49 |     <MotionTag
+     |      ^^^^^^^^^ This component is created during render
+  50 |       custom={animationNum}
+  51 |       initial="hidden"
+  52 |       whileInView="visible"
+
+C:\CitrineX\vinodnaraen-publication\Vinod-Publication\src\components\ui\timeline-animation.tsx:46:35
+  44 |   // motion() wraps any HTML element or component
+  45 |   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+> 46 |   const MotionTag = useMemo(() => motion(Tag as any), [Tag]);
+     |                                   ^^^^^^^^^^^^^^^^^^ The component is created during render here
+  47 |
+  48 |   return (
+  49 |     <MotionTag  react-hooks/static-components
+
+✖ 58 problems (23 errors, 35 warnings)
+  2 errors and 0 warnings potentially fixable with the `--fix` option.
+
