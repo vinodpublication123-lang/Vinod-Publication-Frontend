@@ -177,6 +177,44 @@ async function apiFetch<T>(
   return body.data as T;
 }
 
+// ── File upload helper (multipart/form-data — do NOT set Content-Type manually) ─
+
+async function apiUpload<T>(path: string, formData: FormData): Promise<T> {
+  const token = TokenStorage.getToken();
+  const res = await fetch(`${API_BASE_URL}${path}`, {
+    method: "POST",
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+    body: formData,
+  });
+  if (!res.ok) {
+    const errorBody = await res.json().catch(() => ({ message: "Upload failed" }));
+    throw new Error(errorBody.message || `HTTP ${res.status}`);
+  }
+  const body = await res.json();
+  return body.data as T;
+}
+
+// ── Uploads API ────────────────────────────────────────────────────────────────
+
+export const uploadsApi = {
+  bookCover: (file: File): Promise<{ url: string; filename: string }> => {
+    const fd = new FormData(); fd.append("file", file);
+    return apiUpload("/api/v1/uploads/book-cover", fd);
+  },
+  authorAvatar: (file: File): Promise<{ url: string; filename: string }> => {
+    const fd = new FormData(); fd.append("file", file);
+    return apiUpload("/api/v1/uploads/author-avatar", fd);
+  },
+  productImage: (file: File): Promise<{ url: string; filename: string }> => {
+    const fd = new FormData(); fd.append("file", file);
+    return apiUpload("/api/v1/uploads/product-image", fd);
+  },
+  productGallery: (file: File): Promise<{ url: string; filename: string }> => {
+    const fd = new FormData(); fd.append("file", file);
+    return apiUpload("/api/v1/uploads/product-gallery", fd);
+  },
+};
+
 // ── Products API ───────────────────────────────────────────────────────────────
 
 export const productsApi = {

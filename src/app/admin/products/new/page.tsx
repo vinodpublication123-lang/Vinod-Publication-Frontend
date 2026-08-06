@@ -8,7 +8,7 @@ import { SelectDropdown } from "@/components/ui/SelectDropdown";
 import { DashboardCard } from "@/components/admin/DashboardCard";
 import { VariantBuilder, ProductVariant } from "@/components/admin/VariantBuilder";
 import { useRouter } from "next/navigation";
-import { productsApi, authorsApi, ApiAuthor } from "@/lib/services";
+import { productsApi, authorsApi, ApiAuthor, uploadsApi } from "@/lib/services";
 
 export default function AddProductPage() {
   const router = useRouter();
@@ -68,16 +68,28 @@ export default function AddProductPage() {
   const [coverImageUrl, setCoverImageUrl] = useState("");
   const [authorAvatarUrl, setAuthorAvatarUrl] = useState("");
 
-  const pickImage = (onPicked: (url: string) => void) => {
+  const pickImage = (
+    onPicked: (url: string) => void,
+    uploadType: "product-gallery" | "book-cover" | "author-avatar" | "product-image" = "product-image"
+  ) => {
     const input = document.createElement("input");
     input.type = "file";
     input.accept = "image/*";
-    input.onchange = (e) => {
+    input.onchange = async (e) => {
       const file = (e.target as HTMLInputElement).files?.[0];
       if (!file) return;
-      const reader = new FileReader();
-      reader.onload = () => onPicked(reader.result as string);
-      reader.readAsDataURL(file);
+      try {
+        toast.loading("Uploading image...", { id: "img-upload" });
+        let result: { url: string; filename: string };
+        if (uploadType === "product-gallery") result = await uploadsApi.productGallery(file);
+        else if (uploadType === "book-cover") result = await uploadsApi.bookCover(file);
+        else if (uploadType === "author-avatar") result = await uploadsApi.authorAvatar(file);
+        else result = await uploadsApi.productImage(file);
+        toast.success("Image uploaded!", { id: "img-upload" });
+        onPicked(result.url);
+      } catch {
+        toast.error("Failed to upload image. Please try again.", { id: "img-upload" });
+      }
     };
     input.click();
   };
@@ -322,7 +334,7 @@ export default function AddProductPage() {
                     ))}
                     <button
                       type="button"
-                      onClick={() => pickImage((url) => setGalleryImages([...galleryImages, url]))}
+                      onClick={() => pickImage((url) => setGalleryImages([...galleryImages, url]), "product-gallery")}
                       className="aspect-square bg-white/5 border border-white/10 rounded-xl border-dashed hover:border-[var(--gold)]/50 hover:bg-white/10 transition-colors flex items-center justify-center cursor-pointer group"
                     >
                       <div className="flex flex-col items-center gap-2">
@@ -441,7 +453,7 @@ export default function AddProductPage() {
                       <h4 className="text-sm font-medium text-white mb-3">Author Photo</h4>
                       <button
                         type="button"
-                        onClick={() => pickImage(setAuthorAvatarUrl)}
+                        onClick={() => pickImage(setAuthorAvatarUrl, "author-avatar")}
                         className="w-full border-2 border-dashed border-white/20 rounded-xl p-10 flex flex-col items-center justify-center text-center hover:border-[var(--gold)]/50 hover:bg-white/[0.02] transition-colors group"
                       >
                         {authorAvatarUrl ? (
@@ -494,7 +506,7 @@ export default function AddProductPage() {
                   <h4 className="text-sm font-medium text-white mb-3">Cover Image</h4>
                   <button
                     type="button"
-                    onClick={() => pickImage(setCoverImageUrl)}
+                    onClick={() => pickImage(setCoverImageUrl, "book-cover")}
                     className="w-full border-2 border-dashed border-white/20 rounded-xl p-10 flex flex-col items-center justify-center text-center hover:border-[var(--gold)]/50 hover:bg-white/[0.02] transition-colors group"
                   >
                     {coverImageUrl ? (
