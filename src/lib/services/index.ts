@@ -178,14 +178,38 @@ async function apiFetch<T>(
 }
 
 // ── File upload helper (multipart/form-data — do NOT set Content-Type manually) ─
+// Mirrors apiFetch: auto-refreshes token on 401, redirects to login if expired.
 
 async function apiUpload<T>(path: string, formData: FormData): Promise<T> {
-  const token = TokenStorage.getToken();
-  const res = await fetch(`${API_BASE_URL}${path}`, {
-    method: "POST",
-    headers: token ? { Authorization: `Bearer ${token}` } : {},
-    body: formData,
-  });
+  const doUpload = (token?: string | null) =>
+    fetch(`${API_BASE_URL}${path}`, {
+      method: "POST",
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+      body: formData,
+    });
+
+  const redirectToLogin = () => {
+    if (typeof window !== "undefined") window.location.href = "/login?expired=1";
+    throw new Error("Your session has expired. Please log in again.");
+  };
+
+  // ── Get current token — if missing, pre-emptively refresh ──────────────────
+  let token = TokenStorage.getToken();
+  if (!token) {
+    token = await authService.refresh();
+    if (!token) redirectToLogin();
+  }
+
+  // ── First attempt ──────────────────────────────────────────────────────────
+  let res = await doUpload(token);
+
+  // ── Auto-refresh on 401 (expired access token) ─────────────────────────────
+  if (res.status === 401) {
+    const newToken = await authService.refresh();
+    if (!newToken) redirectToLogin();
+    res = await doUpload(newToken);
+  }
+
   if (!res.ok) {
     const errorBody = await res.json().catch(() => ({ message: "Upload failed" }));
     throw new Error(errorBody.message || `HTTP ${res.status}`);
