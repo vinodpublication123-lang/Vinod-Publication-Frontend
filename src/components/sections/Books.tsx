@@ -117,7 +117,46 @@ export function Books() {
 
   if (loading || books.length === 0) return null;
 
-  /* ── Repeated lists ──────────────────────────────────────────────────── */
+  /* ── Small catalog: render a simple grid (avoids obvious repetition) ──────── */
+  if (books.length < 5) {
+    return (
+      <section id="books" className="relative py-28 overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <div className="container mx-auto px-6">
+          <div className="flex items-end justify-between mb-14">
+            <div>
+              <motion.span initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                className="text-[var(--gold)] uppercase tracking-[0.3em] text-xs font-semibold mb-3 block">
+                Our Catalogue
+              </motion.span>
+              <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
+                className="font-serif text-4xl md:text-5xl tracking-tight">
+                Our Published Books
+              </motion.h2>
+              <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
+                className="text-muted-foreground text-base mt-3 max-w-md">
+                Dive into the universe of VINVERSE Publication.
+              </motion.p>
+            </div>
+          </div>
+          <div className="flex flex-wrap justify-center gap-8 py-6">
+            {books.map((book) => {
+              const modal = toModalBook(book as never);
+              return (
+                <BookCard key={book.id} book={modal} isAlt={false} onClick={() => setSelectedBook(modal)} />
+              );
+            })}
+          </div>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <AnimatePresence>
+          {selectedBook && <BookModal book={selectedBook} onClose={() => setSelectedBook(null)} />}
+        </AnimatePresence>
+      </section>
+    );
+  }
+
+  /* ── Repeated lists for infinite carousel (5+ books) ────────────────────── */
   const block = [...books, ...books, ...books, ...books];
   const blocks = [0, 1, 2, 3];
 
