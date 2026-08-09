@@ -33,7 +33,7 @@ export function Navbar() {
   // Close mobile menu on resize
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1024) setMobileMenuOpen(false);
+      if (window.innerWidth >= 1280) setMobileMenuOpen(false);
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -66,7 +66,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-8">
+          <nav className="hidden xl:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-5">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -86,7 +86,7 @@ export function Navbar() {
               
               if (isAuthenticated && user) {
                 return (
-                  <div className="relative group hidden sm:block">
+                  <div className="relative group hidden xl:block">
                     <button className="flex items-center gap-2 w-10 h-10 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors backdrop-blur-sm justify-center focus:outline-none">
                       <div className="w-4 h-4 rounded-full bg-[var(--gold)] flex items-center justify-center text-[#080e1a] text-[10px] font-bold">
                         {user.name?.charAt(0).toUpperCase()}
@@ -108,7 +108,7 @@ export function Navbar() {
                 );
               } else {
                 return (
-                  <div className="hidden sm:flex items-center gap-4 mr-2">
+                  <div className="hidden xl:flex items-center gap-4 mr-2">
                     <Link href="/login" className="text-xs uppercase tracking-wider text-white/70 hover:text-[var(--gold)] transition-colors font-semibold">
                       Login
                     </Link>
@@ -141,7 +141,7 @@ export function Navbar() {
 
             {/* Mobile Toggle */}
             <button
-              className="lg:hidden text-primary p-2 -mr-2"
+              className="xl:hidden text-primary p-2 -mr-2"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >

@@ -7,6 +7,7 @@ import {
 export const services = [
   {
     title: "Basic Package",
+    popular: false,
     price: "12,500",
     description: "Perfect for students and first-time authors looking for an economical, professional publishing solution.",
     icon: BookOpen,
@@ -29,6 +30,7 @@ export const services = [
   },
   {
     title: "Advanced Package",
+    popular: true,
     price: "28,000",
     description: "Perfect for first time authors who want wider reach, professional marketing and enhanced support.",
     icon: Star,
@@ -52,6 +54,7 @@ export const services = [
   },
   {
     title: "Hybrid Package",
+    popular: false,
     price: "49,000",
     description: "Independence of self-publishing with the expertise of traditional publishing — premium in every way.",
     icon: Crown,

@@ -48,8 +48,8 @@ function ServiceCard({
               ]
         )}
       >
-        {/* "Most Popular" badge on featured */}
-        {isFeatured && (
+        {/* "Most Popular" badge — only for the Advanced Package */}
+        {service.popular && (
           <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 z-30">
             <motion.div
               className="bg-[var(--gold)] py-1.5 px-4 rounded-full flex items-center gap-1.5"
