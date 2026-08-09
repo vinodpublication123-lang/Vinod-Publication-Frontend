@@ -2,7 +2,6 @@ import dynamic from "next/dynamic";
 import { Navbar } from "@/components/layout/Navbar";
 import { ScrollSectionIndicator } from "@/components/layout/ScrollSectionIndicator";
 import { Hero } from "@/components/sections/Hero";
-import { Stats } from "@/components/sections/Stats";
 
 // ── Lazy-loaded sections (below the fold) ────────────────────────────────────
 // Each section becomes its own JS chunk, downloaded only when needed.
@@ -57,7 +56,6 @@ export default function Home() {
       <ScrollSectionIndicator />
       <Navbar />
       <Hero />
-      <Stats />
       <About />
       <Services />
       <PublishingProcess />

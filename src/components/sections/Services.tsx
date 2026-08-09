@@ -82,6 +82,19 @@ function ServiceCard({
             <Icon className="w-6 h-6 text-[var(--gold)]" weight="duotone" />
           </motion.div>
 
+        {/* Price */}
+          <div className="mb-3">
+            <span className="text-muted-foreground text-xs font-medium mr-1">₹</span>
+            <span
+              className={cn(
+                "font-serif text-3xl font-bold tracking-tight",
+                isFeatured ? "text-[var(--gold)]" : "text-foreground"
+              )}
+            >
+              {service.price}
+            </span>
+          </div>
+
           {/* Title */}
           <h3
             className={cn(
@@ -259,7 +272,7 @@ export function Services() {
                 wordLevelClassName="pb-2"
                 transition={{ type: "spring", stiffness: 240, damping: 38, delay: 0.1 }}
               >
-                Our Publishing Services
+                Publishing Packages
               </VerticalCutReveal>
             </h2>
 
@@ -270,7 +283,7 @@ export function Services() {
               customVariants={headingVariants}
               className="text-muted-foreground text-lg"
             >
-              We offer end-to-end publishing solutions designed to bring your story to the world — with the personal touch it deserves.
+              Choose a publishing plan that fits your vision. Every package is crafted to bring your story to the world with the care it deserves.
             </TimelineContent>
           </article>
 
