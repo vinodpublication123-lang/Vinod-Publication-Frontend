@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { motion, HTMLMotionProps, Variants } from "framer-motion";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, X } from "lucide-react";
 
 export interface ProductCardProps extends Omit<HTMLMotionProps<"div">, "name"> {
   imageUrl: string;
@@ -40,7 +40,9 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
     },
     ref
   ) => {
-    // Price formatter for consistent currency display
+    // Track tap state for touch devices (mobile/tablet)
+    const [isTapped, setIsTapped] = React.useState(false);
+
     const formatPrice = (amount: number) => {
       return new Intl.NumberFormat("en-IN", {
         style: "currency",
@@ -52,13 +54,13 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
     };
 
     const overlayVariants: Variants = {
-      rest: { 
-        y: "100%", 
+      rest: {
+        y: "100%",
         opacity: 0,
         filter: "blur(4px)",
       },
-      hover: { 
-        y: "0%", 
+      hover: {
+        y: "0%",
         opacity: 1,
         filter: "blur(0px)",
         transition: {
@@ -73,13 +75,13 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
     };
 
     const contentVariants: Variants = {
-      rest: { 
-        opacity: 0, 
+      rest: {
+        opacity: 0,
         y: 20,
         scale: 0.95,
       },
-      hover: { 
-        opacity: 1, 
+      hover: {
+        opacity: 1,
         y: 0,
         scale: 1,
         transition: {
@@ -94,15 +96,22 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
     return (
       <motion.div
         ref={ref}
-        initial="rest"
+        // animate controls tap state on touch devices;
+        // whileHover overrides it on pointer devices (desktop)
+        animate={isTapped ? "hover" : "rest"}
         whileHover={isOutOfStock ? undefined : "hover"}
         className={cn(
           "group relative flex h-full w-full flex-col items-center justify-start overflow-hidden rounded-2xl border border-white/5 bg-transparent text-center text-foreground transition-all duration-500 ease-in-out",
           isOutOfStock
             ? "opacity-50 grayscale cursor-not-allowed"
-            : "hover:border-[var(--gold)]/20 hover:bg-white/[0.02]",
+            : "hover:border-[var(--gold)]/20 hover:bg-white/[0.02] cursor-pointer",
           className
         )}
+        // Tap on touch devices reveals the overlay
+        onClick={() => {
+          if (isOutOfStock) return;
+          setIsTapped((prev) => !prev);
+        }}
         {...props}
       >
         {/* Product Image */}
@@ -126,32 +135,43 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
 
           {/* Pricing and Offers */}
           <div className="mt-4 flex flex-col items-center gap-2 relative z-0">
-          <div className="flex flex-col items-center">
-            <span className="text-2xl font-bold text-foreground">{formatPrice(price)}</span>
-            {isCouponPrice && (
-              <span className="text-xs font-medium text-[var(--gold)]">
-                Coupon Price
+            <div className="flex flex-col items-center">
+              <span className="text-2xl font-bold text-foreground">{formatPrice(price)}</span>
+              {isCouponPrice && (
+                <span className="text-xs font-medium text-[var(--gold)]">
+                  Coupon Price
+                </span>
+              )}
+            </div>
+            <div className="flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-3 py-1 text-xs text-foreground mt-2">
+              {originalPrice && (
+                <span className="text-muted-foreground line-through">
+                  {formatPrice(originalPrice)}
+                </span>
+              )}
+              <span className="font-semibold text-[var(--gold)]">
+                {offerText}
               </span>
-            )}
+            </div>
           </div>
-          <div className="flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-3 py-1 text-xs text-foreground mt-2">
-            {originalPrice && (
-              <span className="text-muted-foreground line-through">
-                {formatPrice(originalPrice)}
-              </span>
-            )}
-            <span className="font-semibold text-[var(--gold)]">
-              {offerText}
-            </span>
-          </div>
-        </div>
         </div>
 
-        {/* Reveal Overlay */}
+        {/* Reveal Overlay — triggered by hover (desktop) or tap (touch) */}
         <motion.div
           variants={overlayVariants}
           className="absolute inset-0 bg-[var(--navy-mid)]/95 backdrop-blur-xl flex flex-col justify-end border border-[var(--gold)]/20 rounded-2xl z-20"
         >
+          {/* Close button for touch devices */}
+          <button
+            className="absolute top-3 right-3 w-7 h-7 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:bg-white/20 transition-colors md:hidden"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsTapped(false);
+            }}
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+
           <div className="p-6 space-y-4 text-left">
             {/* Product Description */}
             <motion.div variants={contentVariants}>
@@ -174,6 +194,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
+                      setIsTapped(false);
                       onAddToCart?.();
                     }}
                     className="w-full flex items-center justify-center gap-2 h-11 rounded-md bg-gradient-to-r from-[var(--gold-dark)] to-[var(--gold-light)] text-[var(--ink)] font-semibold text-sm uppercase tracking-wider hover:opacity-90 transition-opacity"
@@ -182,7 +203,11 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                     Add to Cart
                   </button>
                   <button
-                    onClick={onViewDetails}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsTapped(false);
+                      onViewDetails?.();
+                    }}
                     className="w-full h-11 rounded-md border border-white/20 bg-transparent text-[var(--ivory)] font-medium hover:bg-white/5 transition-colors"
                   >
                     View Details
@@ -190,7 +215,11 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                 </>
               ) : (
                 <button
-                  onClick={onViewDetails}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsTapped(false);
+                    onViewDetails?.();
+                  }}
                   className="w-full flex items-center justify-center gap-2 h-11 rounded-md bg-gradient-to-r from-[var(--gold-dark)] to-[var(--gold-light)] text-[var(--ink)] font-semibold text-sm uppercase tracking-wider hover:opacity-90 transition-opacity"
                 >
                   Shop Now
@@ -200,6 +229,12 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           </div>
         </motion.div>
 
+        {/* Touch hint — only shown on touch devices when not tapped */}
+        {!isOutOfStock && (
+          <div className="absolute bottom-4 left-0 right-0 flex justify-center pointer-events-none md:hidden">
+            <span className="text-[9px] text-white/30 uppercase tracking-widest">Tap to view</span>
+          </div>
+        )}
       </motion.div>
     );
   }
