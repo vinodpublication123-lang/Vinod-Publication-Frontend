@@ -46,8 +46,10 @@ export default function ProductsPage() {
         category: activeFilter !== "All" ? activeFilter : undefined,
         limit: 50,
       });
-      setProducts(res.items);
-      setTotal(res.pagination.total);
+      // Exclude ARCHIVED products (soft-deleted) from the admin list
+      const visible = res.items.filter((p: ApiProduct) => p.status !== "ARCHIVED");
+      setProducts(visible);
+      setTotal(visible.length);
     } catch (err) {
       toast.error(
         err instanceof Error ? err.message : "Failed to load products"
@@ -72,10 +74,12 @@ export default function ProductsPage() {
     setIsDeleting(true);
     try {
       await productsApi.delete(deleteTarget.id);
+      // Remove instantly from local state — no need to re-fetch
+      setProducts((prev) => prev.filter((p) => p.id !== deleteTarget.id));
+      setTotal((prev) => prev - 1);
       toast.success(`"${deleteTarget.name}" deleted successfully`);
       setDeleteModalOpen(false);
       setDeleteTarget(null);
-      fetchProducts();
     } catch (err) {
       toast.error(
         err instanceof Error ? err.message : "Failed to delete product"
